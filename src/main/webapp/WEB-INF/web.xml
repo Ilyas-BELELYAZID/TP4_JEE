@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app
+    version="4.0"
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:javaee="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xml="http://www.w3.org/XML/1998/namespace"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
+	
+	<!-- Nom affiché de l'application web -->
+	<display-name>GestionDesProduitsMVC1</display-name>
+	
+	<!-- Liste des fichiers d'accueil (welcome files) -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+	
+	<servlet>
+		<servlet-name>login</servlet-name> 
+		<servlet-class>web.LoginServlet</servlet-class> 
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>login</servlet-name>
+		<url-pattern>/LoginServlet</url-pattern> 
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>logout</servlet-name> 
+		<servlet-class>web.LogoutServlet</servlet-class> 
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>logout</servlet-name>
+		<url-pattern>/LogoutServlet</url-pattern> 
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>register</servlet-name> 
+		<servlet-class>web.RegisterServlet</servlet-class> 
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>register</servlet-name>
+		<url-pattern>/RegisterServlet</url-pattern> 
+	</servlet-mapping>
+	
+	<!-- Déclaration de la servlet qui liste les produits -->
+	<servlet>
+		<servlet-name>list</servlet-name> <!-- nom logique de la servlet -->
+		<servlet-class>web.ListProduitServlet</servlet-class> <!-- classe Java correspondante -->
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>list</servlet-name>
+		<url-pattern>/listProduits</url-pattern> <!-- URL pour accéder à cette servlet -->
+	</servlet-mapping>
+	
+	<!-- Déclaration de la servlet qui ajoute un produit -->
+	<servlet>
+		<servlet-name>add</servlet-name>
+		<servlet-class>web.AddProduitServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>add</servlet-name>
+		<url-pattern>/addProduit</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Déclaration de la servlet qui supprime un produit -->
+	<servlet>
+		<servlet-name>delete</servlet-name>
+		<servlet-class>web.DeleteProduitServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>delete</servlet-name>
+		<url-pattern>/deleteProduit</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Déclaration de la servlet qui charge un produit pour modification -->
+	<servlet>
+		<servlet-name>edit</servlet-name>
+		<servlet-class>web.EditProduitServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>edit</servlet-name>
+		<url-pattern>/editProduit</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Déclaration de la servlet qui met à jour un produit existant -->
+	<servlet>
+		<servlet-name>update</servlet-name>
+		<servlet-class>web.UpdateProduitServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>update</servlet-name>
+		<url-pattern>/updateProduit</url-pattern>
+	</servlet-mapping>
+
+	<!-- GESTION GLOBALE DES ERREURS -->
+	<!-- Intercepter l'erreur 404 (Page non trouvée) -->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/erreur.jsp</location>
+    </error-page>
+
+    <!-- Intercepter l'erreur 500 (Erreur interne du serveur / Code Java qui plante) -->
+    <error-page>
+        <error-code>500</error-code>
+        <location>/erreur.jsp</location>
+    </error-page>
+
+    <!-- Intercepter TOUTES les exceptions Java non gérées (ex: NullPointerException) -->
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/erreur.jsp</location>
+    </error-page>
+	
+</web-app>
